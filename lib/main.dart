@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tinder_app_flutter/tinder_swap_card.dart' show CardController;
-import 'package:tinder_app_flutter/home/widgets/BuildBottomBar.dart';
-import 'package:tinder_app_flutter/home/widgets/HomeBody.dart';
+import 'package:tinder_app_flutter/home/widgets/build_bottom_bar.dart';
+import 'package:tinder_app_flutter/home/widgets/home_body.dart';
 
 void main() {
   runApp(const MyApp());

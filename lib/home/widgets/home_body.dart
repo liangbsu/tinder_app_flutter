@@ -1,26 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:tinder_app_flutter/tinder_swap_card.dart';
+import 'package:tinder_app_flutter/user.dart';
 
 class HomeBody extends StatelessWidget {
   final CardController cardController;
 
-  HomeBody({Key? key, required this.cardController}) : super(key: key);
-
-  final List<String> welcomeImages = [
-    "https://cdn.wallpapersafari.com/28/53/PjfrGv.jpg",
-    "https://alrigh.com/wp-content/uploads/2020/06/11-Toga-profile-picture.jpg",
-    "https://cdn.wallpapersafari.com/28/53/PjfrGv.jpg",
-    "https://alrigh.com/wp-content/uploads/2020/06/11-Toga-profile-picture.jpg",
-    "https://cdn.wallpapersafari.com/28/53/PjfrGv.jpg",
-    "https://alrigh.com/wp-content/uploads/2020/06/11-Toga-profile-picture.jpg"
-  ];
+  const HomeBody({Key? key, required this.cardController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     return TinderSwapCard(
-      totalNum: welcomeImages.length,
+      totalNum: welcomeUsers.length,
       swipeEdge: 5.0,
       maxWidth: MediaQuery.of(context).size.width * 0.9,
       maxHeight: MediaQuery.of(context).size.height,
@@ -32,7 +23,7 @@ class HomeBody extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.network(
-                  welcomeImages[index],
+                  welcomeUsers[index].imageUrl ?? '',
                   height: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -43,9 +34,9 @@ class HomeBody extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                        'Adina 68',
-                        style: TextStyle(color: Colors.white, fontSize: 22.0)
+                    Text(
+                        welcomeUsers[index].name ?? 'Veo',
+                        style: const TextStyle(color: Colors.white, fontSize: 22.0)
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
