@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tinder_app_flutter/tinder_swap_card.dart' show CardController;
 
 class BuildBottomBar extends StatelessWidget {
-  const BuildBottomBar({Key? key}) : super(key: key);
+  final CardController cardController;
+
+  const BuildBottomBar({Key? key, required this.cardController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +23,14 @@ class BuildBottomBar extends StatelessWidget {
                     icon: Icons.clear,
                     iconColor: Colors.red,
                     onPressed: () {
-                      print('veo');
+                      cardController.triggerLeft();
                     },
                   ),
                   RoundIconButton.large(
                     icon: Icons.favorite,
                     iconColor: Colors.green,
                     onPressed: () {
-                      print('veo');
+                      cardController.triggerRight();
                     },
                   ),
                 ],

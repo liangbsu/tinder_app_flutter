@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tinder_app_flutter/tinder_swap_card.dart' show CardController;
 import 'package:tinder_app_flutter/home/widgets/BuildBottomBar.dart';
 import 'package:tinder_app_flutter/home/widgets/HomeBody.dart';
 
@@ -32,12 +33,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final CardController _cardController = CardController();
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HomeBody(),
-      bottomNavigationBar: BuildBottomBar(),
+    return Scaffold(
+      body: HomeBody(cardController: _cardController),
+      bottomNavigationBar: BuildBottomBar(cardController: _cardController),
     );
   }
 }
