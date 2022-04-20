@@ -1,16 +1,19 @@
-final List<User> welcomeUsers = [
-  User(imageUrl: 'https://cdn.wallpapersafari.com/28/53/PjfrGv.jpg', name: 'Adina 68'),
-  User(imageUrl: 'https://pbs.twimg.com/media/FCLkS0CXMAcOYIb?format=jpg&name=small', name: 'Kendrick Lamar'),
-  User(imageUrl: 'https://cdn.wallpapersafari.com/28/53/PjfrGv.jpg', name: 'Adina 28'),
-  User(imageUrl: 'https://pbs.twimg.com/media/FCLkS0CXMAcOYIb?format=jpg&name=small', name: 'Kendrick Lamar 2'),
-  User(imageUrl: 'https://cdn.wallpapersafari.com/28/53/PjfrGv.jpg', name: 'Adina 8'),
-  User(imageUrl: 'https://pbs.twimg.com/media/FCLkS0CXMAcOYIb?format=jpg&name=small', name: 'Kendrick Lamar 3')
-];
 
 class User {
-  String? imageUrl;
-  String? name;
+  String? id;
+  String? firstName;
+  String? lastName;
   int? age;
+  String? imageUrl;
 
-  User({this.imageUrl, this.name, this.age});
+  User({this.id, this.firstName, this.lastName, this.imageUrl, this.age});
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      imageUrl: json['picture'],
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tinder_app_flutter/home/home_provider.dart';
 import 'package:tinder_app_flutter/tinder_swap_card.dart';
-import 'package:tinder_app_flutter/user.dart';
 
 class HomeBody extends StatelessWidget {
   final CardController cardController;
@@ -9,9 +10,9 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final _homeProvider = Provider.of<HomeProvider>(context);
     return TinderSwapCard(
-      totalNum: welcomeUsers.length,
+      totalNum: _homeProvider.listUsers.length,
       swipeEdge: 5.0,
       maxWidth: MediaQuery.of(context).size.width * 0.9,
       maxHeight: MediaQuery.of(context).size.height,
@@ -23,7 +24,7 @@ class HomeBody extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.network(
-                  welcomeUsers[index].imageUrl ?? '',
+                  _homeProvider.listUsers[index].imageUrl ?? '',
                   height: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -35,7 +36,7 @@ class HomeBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                        welcomeUsers[index].name ?? 'Veo',
+                        _homeProvider.listUsers[index].firstName ?? 'Veo',
                         style: const TextStyle(color: Colors.white, fontSize: 22.0)
                     ),
                     Row(
