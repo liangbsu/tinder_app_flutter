@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:tinder_app_flutter/home/home_provider.dart';
 import 'package:tinder_app_flutter/tinder_swap_card.dart' show CardController;
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Tinder App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.dark),
       ),
       home: const MyHomePage(),
     );
