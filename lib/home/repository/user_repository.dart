@@ -25,4 +25,23 @@ class UserRepository {
     }
     return result;
   }
+
+  Future<User> getUserDetail(String? userID) async {
+    User result = User();
+    try {
+      final response = await http.get(
+        Uri.parse('https://dummyapi.io/data/v1/user/$userID'),
+        headers: {
+          HttpHeaders.contentTypeHeader: "application/json",
+          'app-id': _appID
+        },
+      );
+      if (response.statusCode == 200) {
+        result = User.fromJson(json.decode(response.body));
+      }
+    } catch (e) {
+      result = User();
+    }
+    return result;
+  }
 }

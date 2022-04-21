@@ -8,12 +8,28 @@ class User {
 
   User({this.id, this.firstName, this.lastName, this.imageUrl, this.age});
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      id: json['id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      imageUrl: json['picture'],
-    );
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    imageUrl = json['picture'];
+    age = json['dateOfBirth'] != null ? calculateAge(DateTime.parse(json['dateOfBirth'])) : null;
+  }
+
+  int calculateAge(DateTime birthDate) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate.year;
+    int month1 = currentDate.month;
+    int month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      int day1 = currentDate.day;
+      int day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    return age;
   }
 }

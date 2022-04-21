@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     final _homeProvider = Provider.of<HomeProvider>(context, listen: false);
-    _homeProvider.getListUsers();
+    _homeProvider.firsFetchData();
   }
 
   @override

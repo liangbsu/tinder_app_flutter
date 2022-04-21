@@ -7,9 +7,22 @@ class HomeProvider with ChangeNotifier {
   final UserRepository _userRepository = UserRepository();
   final List<User> listUsers = [];
 
-  void getListUsers() async {
+  void firsFetchData() async {
+    await getListUsers();
+    getUserDetail(0);
+  }
+
+  Future<void> getListUsers() async {
     final _value = await _userRepository.getDataListUsers();
     listUsers.addAll(_value);
     notifyListeners();
+  }
+
+  void getUserDetail(int indexUserInList) async {
+    final _value = await _userRepository.getUserDetail(listUsers[indexUserInList].id);
+    if (_value.id != null) {
+      listUsers[indexUserInList] = _value;
+      notifyListeners();
+    }
   }
 }

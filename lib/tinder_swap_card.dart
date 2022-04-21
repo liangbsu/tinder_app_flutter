@@ -163,7 +163,6 @@ class _TinderSwapCardState extends State<TinderSwapCard> with TickerProviderStat
 
     _animationController.addStatusListener(
           (final status) {
-        final index = _currentFront;
 
         if (status == AnimationStatus.completed) {
           CardSwipeOrientation orientation;
@@ -177,8 +176,8 @@ class _TinderSwapCardState extends State<TinderSwapCard> with TickerProviderStat
             orientation = CardSwipeOrientation.recover;
           }
 
-          if (widget.swipeCompleteCallback != null) {
-            widget.swipeCompleteCallback!(orientation, index);
+          if (widget.swipeCompleteCallback != null && orientation != CardSwipeOrientation.recover) {
+            widget.swipeCompleteCallback!(orientation, _currentFront);
           }
 
           if (orientation != CardSwipeOrientation.recover) changeCardOrder();

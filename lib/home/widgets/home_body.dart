@@ -17,6 +17,7 @@ class HomeBody extends StatelessWidget {
       maxWidth: MediaQuery.of(context).size.width * 0.9,
       maxHeight: MediaQuery.of(context).size.height,
       cardBuilder: (context, index) {
+        final _user = _homeProvider.listUsers[index];
         return SafeArea(
           child: Stack(
             alignment: AlignmentDirectional.bottomStart,
@@ -24,7 +25,7 @@ class HomeBody extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.network(
-                  _homeProvider.listUsers[index].imageUrl ?? '',
+                  _user.imageUrl ?? '',
                   errorBuilder: ((context, _ , stackTrace) => Container(
                       height: double.infinity,
                       width: double.infinity,
@@ -41,7 +42,7 @@ class HomeBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                        _homeProvider.listUsers[index].firstName ?? 'Veo',
+                        (_user.firstName ?? '') + ' ' + (_user.lastName ?? '') + ' ' + '${_user.age ?? ''}',
                         style: const TextStyle(color: Colors.white, fontSize: 22.0)
                     ),
                     Row(
@@ -66,7 +67,7 @@ class HomeBody extends StatelessWidget {
       },
       cardController: cardController,
       swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
-        /// Get orientation & index of swiped card!
+        _homeProvider.getUserDetail(index+1);
       },
     );
   }
