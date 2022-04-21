@@ -25,6 +25,11 @@ class HomeBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.network(
                   _homeProvider.listUsers[index].imageUrl ?? '',
+                  errorBuilder: ((context, _ , stackTrace) => Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      color: Colors.grey,
+                      child: const Icon(Icons.error, color: Colors.red, size: 28.0))),
                   height: double.infinity,
                   fit: BoxFit.cover,
                 ),
