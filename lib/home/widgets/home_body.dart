@@ -71,6 +71,11 @@ class HomeBody extends StatelessWidget {
         if (index + 5 == _homeProvider.listUsers.length) {
           _homeProvider.getListUsers();
         }
+        if (orientation == CardSwipeOrientation.right) {
+          _homeProvider.listUsersLiked.add(_homeProvider.listUsers[index]);
+        } else {
+          _homeProvider.listUsersDisliked.add(_homeProvider.listUsers[index]);
+        }
       },
     );
   }

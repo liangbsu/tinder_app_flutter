@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tinder_app_flutter/tinder_swap_card.dart' show CardController;
+import 'package:tinder_app_flutter/view_list_users/screens/view_disliked_list.dart';
+import 'package:tinder_app_flutter/view_list_users/screens/view_liked_list.dart';
 
 class BuildBottomBar extends StatelessWidget {
   final CardController cardController;
@@ -45,14 +47,20 @@ class BuildBottomBar extends StatelessWidget {
                     icon: Icons.close,
                     textButton: 'Second Look',
                     onPressed: () {
-                      print('veo');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ViewDislikedList()),
+                      );
                     },
                   ),
                   IconTexButton(
                     icon: Icons.favorite,
                     textButton: 'Liked List',
                     onPressed: () {
-                      print('veo');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ViewLikedList()),
+                      );
                     },
                   )
                 ],
