@@ -68,6 +68,9 @@ class HomeBody extends StatelessWidget {
       cardController: cardController,
       swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
         _homeProvider.getUserDetail(index+1);
+        if (index + 5 == _homeProvider.listUsers.length) {
+          _homeProvider.getListUsers();
+        }
       },
     );
   }

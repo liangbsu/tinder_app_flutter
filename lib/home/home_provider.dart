@@ -6,6 +6,7 @@ import 'package:tinder_app_flutter/user.dart';
 class HomeProvider with ChangeNotifier {
   final UserRepository _userRepository = UserRepository();
   final List<User> listUsers = [];
+  int _page = 0;
 
   void firsFetchData() async {
     await getListUsers();
@@ -13,7 +14,8 @@ class HomeProvider with ChangeNotifier {
   }
 
   Future<void> getListUsers() async {
-    final _value = await _userRepository.getDataListUsers();
+    _page++;
+    final _value = await _userRepository.getDataListUsers(_page);
     listUsers.addAll(_value);
     notifyListeners();
   }

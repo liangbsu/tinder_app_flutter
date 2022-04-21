@@ -7,11 +7,11 @@ import 'package:http/http.dart' as http;
 class UserRepository {
   final String _appID = '625ffe74e6a875260670577c';
 
-  Future<List<User>> getDataListUsers() async {
+  Future<List<User>> getDataListUsers(int _page) async {
     List<User> result = [];
     try {
       final response = await http.get(
-        Uri.parse('https://dummyapi.io/data/v1/user?limit=10'),
+        Uri.parse('https://dummyapi.io/data/v1/user?limit=10&page=$_page'),
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
           'app-id': _appID
