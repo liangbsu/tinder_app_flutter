@@ -33,3 +33,15 @@ class User {
     return age;
   }
 }
+
+class ListUsers {
+  final List<User> results = <User>[];
+
+  ListUsers();
+
+  ListUsers.fromJson(Map<String, dynamic> json) {
+    json['data'].forEach((user) {
+      results.add(User.fromJson(user));
+    });
+  }
+}
