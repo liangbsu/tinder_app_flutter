@@ -16,17 +16,27 @@ class HomeProvider with ChangeNotifier {
   }
 
   Future<void> getListUsers() async {
-    _page++;
-    final _value = await _userRepository.getDataListUsers(_page);
-    listUsers.addAll(_value);
-    notifyListeners();
+    try {
+      _page++;
+      final _value = await _userRepository.getDataListUsers(_page);
+      listUsers.addAll(_value);
+      notifyListeners();
+    } catch(e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
   }
 
   void getUserDetail(int indexUserInList) async {
-    final _value = await _userRepository.getUserDetail(listUsers[indexUserInList].id);
-    if (_value.id != null) {
+    try {
+      final _value = await _userRepository.getUserDetail(listUsers[indexUserInList].id);
       listUsers[indexUserInList] = _value;
       notifyListeners();
+    } catch(e) {
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 }

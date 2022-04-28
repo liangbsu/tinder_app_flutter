@@ -80,8 +80,14 @@ dynamic _checkResponseStatus(http.Response response) {
     case 200:
       var responseJson = json.decode(response.body.toString());
       return responseJson;
+    case 400:
+      throw BadRequestException(response.body.toString());
+    case 401:
+    case 403:
+      throw UnauthorisedException(response.body.toString());
+    case 500:
     default:
-      throw BadRequestException();
+      throw FetchDataException('Error occured while Communication with Server with StatusCode : ${response.statusCode}');
   }
 }
 
